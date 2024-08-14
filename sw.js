@@ -34,3 +34,16 @@ self.addEventListener('fetch', event => {
     }
   })());
 });
+
+self.addEventListener('install', event => {
+	self.skipWaiting();
+	event.waitUntil((async () => {
+	  const cache = await caches.open(CACHE_NAME);
+	  cache.addAll([
+		'/',
+		'/converter.js',
+		'/converter.css'
+	  ]);
+	})());
+  });
+  
